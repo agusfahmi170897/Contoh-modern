@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WillMart — Ecommerce Landing Page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-primary:#2f80ed;
+    --blue-header:#3d8bf2;
+    --blue-dark:#1f3a93;
+    --blue-darker:#132a6b;
+    --text-dark:#1b1b2f;
+    --text-muted:#6b7280;
+    --border:#e6e8ec;
+    --bg:#ffffff;
+    --bg-soft:#f5f6f8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Open Sans', sans-serif;
+    color:var(--text-dark);
+    background:var(--bg);
+  }
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
+  h1,h2,h3{font-family:'Montserrat',sans-serif;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    background:var(--blue-header);
+    color:#fff;
+    font-size:13px;
+  }
+  .topbar .wrap{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:8px 24px;
+  }
+  .topbar .left, .topbar .right{display:flex;gap:24px;align-items:center;}
+  .topbar .left span, .topbar .right span{opacity:.95;}
+
+  /* ---------- HEADER ---------- */
+  header.main{
+    background:var(--blue-header);
+    color:#fff;
+    padding-bottom:16px;
+  }
+  .header-row{
+    display:flex;align-items:center;gap:24px;
+    padding:18px 24px 12px;
+    max-width:1200px;margin:0 auto;
+  }
+  .logo{
+    display:flex;align-items:center;gap:8px;
+    font-family:'Montserrat',sans-serif;
+    font-weight:800;font-size:22px;white-space:nowrap;
+  }
+  .logo svg{width:26px;height:26px;}
+  .search-bar{
+    flex:1;display:flex;background:#fff;border-radius:4px;overflow:hidden;
+  }
+  .search-bar input{
+    flex:1;border:none;padding:11px 16px;font-size:14px;outline:none;color:#333;
+  }
+  .search-bar button{
+    background:#fff;color:var(--blue-header);padding:0 18px;font-size:16px;
+  }
+  .cart-btn{
+    background:var(--blue-dark);color:#fff;
+    display:flex;align-items:center;gap:8px;
+    padding:11px 18px;border-radius:4px;font-size:13px;font-weight:700;white-space:nowrap;
+  }
+  .cart-btn .count{
+    background:#fff;color:var(--blue-dark);border-radius:50%;
+    width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;
+  }
+  nav.categories{
+    max-width:1200px;margin:0 auto;padding:6px 24px 0;
+    display:flex;gap:28px;font-size:13px;font-weight:600;flex-wrap:wrap;
+  }
+  nav.categories a{opacity:.95;}
+
+  /* ---------- HERO PROMO ---------- */
+  .hero{
+    background:linear-gradient(120deg,#eaf6f8,#e9e6f7 60%,#f3e9ec);
+    padding:40px 0;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:flex;align-items:center;gap:40px;justify-content:space-between;
+  }
+  .hero-copy{max-width:480px;}
+  .hero-eyebrow{
+    font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
+    color:#5b3fa0;font-size:15px;letter-spacing:.5px;
+  }
+  .hero-copy h1{font-size:34px;line-height:1.25;margin:6px 0 10px;color:#111;}
+  .hero-copy .price-line{font-size:15px;color:#333;margin-bottom:4px;}
+  .hero-copy .price-line b{font-size:17px;}
+  .hero-copy .tagline{font-weight:700;font-size:15px;margin-bottom:16px;}
+  .instant-off{
+    display:inline-flex;align-items:center;gap:10px;
+    background:#fff;border:1px solid #eee;border-radius:4px;
+    padding:10px 14px;font-size:12px;font-weight:600;
+  }
+  .instant-off .pill{
+    background:#e63946;color:#fff;border-radius:3px;padding:4px 8px;font-size:10px;
+  }
+  .hero-image{position:relative;flex-shrink:0;width:340px;}
+
+  /* ---------- SECTION HEADINGS ---------- */
+  .section{padding:36px 0;}
+  .section-title{
+    font-size:20px;font-weight:700;color:var(--blue-header);margin-bottom:20px;
+  }
+
+  /* ---------- DEALS OF THE DAY ---------- */
+  .deals-grid{
+    display:grid;grid-template-columns:repeat(4,1fr) 1.2fr;gap:16px;
+  }
+  .deal-card{text-align:center;}
+  .deal-card .img-box{
+    background:var(--bg-soft);border-radius:6px;padding:18px;margin-bottom:10px;
+    display:flex;align-items:center;justify-content:center;height:110px;
+  }
+  .deal-card h4{font-size:14px;font-weight:700;margin-bottom:4px;}
+  .deal-card .off{color:var(--blue-header);font-size:13px;font-weight:600;}
+  .deal-card .sub{color:var(--text-muted);font-size:12px;}
+  .offer-card{
+    background:var(--bg-soft);border-radius:6px;padding:16px;
+    display:flex;flex-direction:column;justify-content:flex-end;position:relative;
+    min-height:200px;overflow:hidden;
+  }
+  .offer-card img{position:absolute;top:0;right:0;bottom:40px;left:0;width:100%;height:calc(100% - 40px);object-fit:cover;}
+  .offer-card .label{font-size:11px;font-weight:700;color:var(--text-muted);position:relative;z-index:2;}
+  .offer-card .name{font-size:12px;font-weight:600;margin:2px 0 6px;position:relative;z-index:2;background:rgba(255,255,255,.85);}
+  .offer-card .off{color:var(--blue-header);font-weight:700;font-size:16px;position:relative;z-index:2;}
+
+  /* ---------- BEST SELLING ---------- */
+  .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .product-card{
+    background:var(--bg-soft);border-radius:6px;padding:24px;text-align:left;
+  }
+  .product-card .img-box{
+    height:170px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .product-card h4{font-size:16px;margin-bottom:6px;}
+  .product-card p{font-size:13px;color:var(--text-muted);margin-bottom:16px;line-height:1.5;}
+  .product-card .row{display:flex;align-items:center;justify-content:space-between;}
+  .product-card .price{font-size:16px;font-weight:700;color:var(--blue-header);}
+  .buy-btn{
+    background:var(--blue-dark);color:#fff;padding:9px 18px;border-radius:4px;font-size:12px;font-weight:700;
+  }
+
+  /* ---------- LATEST LAUNCHES / TRENDING ---------- */
+  .strip-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+  .strip-card{text-align:center;}
+  .strip-card .img-box{
+    background:var(--bg-soft);border-radius:6px;height:110px;
+    display:flex;align-items:center;justify-content:center;margin-bottom:10px;padding:10px;
+  }
+  .strip-card .img-box img{max-height:100%;object-fit:contain;}
+  .strip-card h4{font-size:13px;font-weight:700;margin-bottom:3px;}
+  .strip-card .meta{font-size:11px;color:var(--text-muted);}
+  .strip-card .price{font-size:12px;font-weight:700;color:var(--blue-header);margin-top:2px;}
+  .strip-card .off{font-size:12px;color:var(--blue-header);font-weight:600;}
+  .strip-card .sub{font-size:11px;color:var(--text-muted);}
+
+  /* ---------- BANNER ---------- */
+  .banner-deals{width:100%;}
+  .banner-deals img{width:100%;object-fit:cover;}
+
+  /* ---------- DISCOVER LATEST / BLOG ---------- */
+  .discover-head{text-align:center;margin-bottom:28px;}
+  .discover-head h2{color:var(--blue-header);font-size:26px;margin-bottom:6px;}
+  .discover-head p{color:var(--text-muted);font-size:14px;}
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .blog-card img{width:100%;height:220px;object-fit:cover;border-radius:4px;margin-bottom:16px;}
+  .blog-card .tag{font-size:11px;font-weight:700;color:var(--blue-header);letter-spacing:.5px;text-transform:uppercase;}
+  .blog-card h3{font-size:18px;margin:8px 0 10px;line-height:1.3;}
+  .blog-card p{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:12px;}
+  .blog-card .read-more{font-size:13px;font-weight:700;color:var(--blue-header);}
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter{background:var(--blue-header);color:#fff;text-align:center;padding:56px 24px;}
+  .newsletter h2{font-size:26px;margin-bottom:8px;}
+  .newsletter p{font-size:14px;opacity:.92;margin-bottom:24px;}
+  .newsletter-form{display:flex;max-width:460px;margin:0 auto;border-radius:4px;overflow:hidden;}
+  .newsletter-form input{flex:1;border:none;padding:13px 16px;font-size:14px;outline:none;}
+  .newsletter-form button{background:var(--blue-dark);color:#fff;padding:0 24px;font-weight:700;font-size:13px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--blue-darker);color:#c9d3ea;padding:48px 0 24px;font-size:13px;}
+  .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:36px;}
+  .footer-grid h4{color:#fff;font-family:'Montserrat',sans-serif;font-size:14px;margin-bottom:14px;}
+  .footer-grid li{margin-bottom:8px;opacity:.85;letter-spacing:.3px;}
+  .socials{display:flex;gap:12px;margin-top:6px;}
+  .socials span{
+    width:30px;height:30px;border-radius:50%;background:#2a4080;
+    display:flex;align-items:center;justify-content:center;font-size:13px;
+  }
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.12);padding-top:18px;text-align:center;
+    font-size:12px;opacity:.7;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:960px){
+    .deals-grid{grid-template-columns:repeat(2,1fr);}
+    .strip-grid{grid-template-columns:repeat(3,1fr);}
+    .products-grid,.blog-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:repeat(2,1fr);}
+    .hero .wrap{flex-direction:column;text-align:center;}
+  }
+  @media (max-width:600px){
+    .header-row{flex-wrap:wrap;}
+    .search-bar{order:3;flex-basis:100%;}
+    nav.categories{overflow-x:auto;}
+    .deals-grid{grid-template-columns:repeat(2,1fr);}
+    .strip-grid{grid-template-columns:repeat(2,1fr);}
+    .topbar .left, .topbar .right{gap:12px;flex-wrap:wrap;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="left">
+      <span>My city: Bangalore</span>
+    </div>
+    <div class="right">
+      <span>&#128222; 080-97653890</span>
+      <span>Shipping</span>
+      <span>Blog</span>
+      <span>Company</span>
+      <span>My account</span>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="main">
+  <div class="header-row">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 4.6A1 1 0 0 0 5.6 19H17M17 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM9 19a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+      WillMart
+    </div>
+    <form class="search-bar">
+      <input type="text" placeholder="Search products">
+      <button type="submit">&#128269;</button>
+    </form>
+    <div class="cart-btn">
+      &#128722; MY CART <span class="count">12</span>
+    </div>
+  </div>
+  <nav class="categories">
+    <a href="#">Women</a>
+    <a href="#">Men</a>
+    <a href="#">Kids</a>
+    <a href="#">Shoes</a>
+    <a href="#">Electronics</a>
+    <a href="#">Sports</a>
+    <a href="#">Home &amp; Furniture</a>
+    <a href="#">Brands</a>
+    <a href="#">Offers</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">OPPO FANTASTIC DAYS</div>
+      <h1>Best Deals On OPPO OPPO F15</h1>
+      <div class="price-line">Just <b>₹21,990</b></div>
+      <div class="tagline">Flaunt It Your Way</div>
+      <div class="instant-off">
+        UPTO ₹1,500 Instant Off <span class="pill">on Credit and Debit Cards and EMI</span>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="assets/4a81c7905b5295825350319c2549fa7eb7509cd4.png" alt="OPPO F15">
+    </div>
+  </div>
+</section>
+
+<!-- DEALS OF THE DAY -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="section-title">Deals of the Day</h2>
+    <div class="deals-grid">
+      <div class="deal-card">
+        <div class="img-box"><img src="assets/01a99f9b2ed7d7281853efb02d9fe951897158dc.png" alt="Grocery & Essentials"></div>
+        <h4>Grocery &amp; Essentials</h4>
+        <div class="off">Upto 30% Off</div>
+        <div class="sub">Grab Now</div>
+      </div>
+      <div class="deal-card">
+        <div class="img-box"><img src="assets/7abd12c38be69bec0e114ce90dda26ae7ca30fcf.png" alt="Best of Creams"></div>
+        <h4>Best of Creams</h4>
+        <div class="off">Upto 30% Off</div>
+        <div class="sub">Lakme &amp; More</div>
+      </div>
+      <div class="deal-card">
+        <div class="img-box"><img src="assets/3a513a0139320d829ea35d94ca9cc7ee4cd6c275.png" alt="Smart Devices"></div>
+        <h4>Smart Devices</h4>
+        <div class="off">Upto 30% Off</div>
+        <div class="sub">Best Deals</div>
+      </div>
+      <div class="deal-card">
+        <div class="img-box"><img src="assets/5ced1141f617996cf274e3982c472f75985351c1.png" alt="Best Selling Laptops"></div>
+        <h4>Best Selling Laptops</h4>
+        <div class="off">Upto 20% Off</div>
+        <div class="sub">HP, Dell &amp; More</div>
+      </div>
+      <div class="offer-card">
+        <img src="assets/7abd12c38be69bec0e114ce90dda26ae7ca30fcf.png" alt="Today's offer" style="opacity:.15;">
+        <div class="label">TODAY'S OFFER</div>
+        <div class="name">Nooni Sprout Smoothing Toner</div>
+        <div class="off">30% OFF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLING PRODUCTS -->
+<section class="section" style="background:var(--bg-soft);">
+  <div class="wrap">
+    <h2 class="section-title">Best Selling Products</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="img-box"><img src="assets/1d885a9ed6b9322ccb3aa4e0501c035ad7e1f2d6.png" alt="Women Essential Kit"></div>
+        <h4>Women Essential Kit</h4>
+        <p>Includes all the necessary things for daily health care</p>
+        <div class="row">
+          <span class="price">₹299.95</span>
+          <button class="buy-btn">BUY NOW</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-box"><img src="assets/4128fed4ef677f0cdc913cca1acf6bf21755df6c.png" alt="Car Cover"></div>
+        <h4>Car Cover</h4>
+        <p>Get best deals on all types of car covers from verified sellers</p>
+        <div class="row">
+          <span class="price">₹299.95</span>
+          <button class="buy-btn">BUY NOW</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="img-box"><img src="assets/2ec2b5ac4e5f5765fe3002e10f6e74fadf3ef2ce.png" alt="Laptops"></div>
+        <h4>Laptops</h4>
+        <p>Buy latest pocket friendly laptops with specification</p>
+        <div class="row">
+          <span class="price">₹299.95</span>
+          <button class="buy-btn">BUY NOW</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST LAUNCHES -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="section-title">Latest Launches</h2>
+    <div class="strip-grid">
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/dbb6f391fa8fcf345be8130ee7faa349d9b165cd.png" alt="MI A2"></div>
+        <h4>MI A2 (64 GB)</h4>
+        <div class="meta">4 GB RAM</div>
+        <div class="price">₹7000</div>
+      </div>
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/81d1dad5e4cc425d6835e09a98a4b7883978b3e1.png" alt="Redmi Note 7S"></div>
+        <h4>Redmi Note 7S</h4>
+        <div class="meta">3 GB RAM</div>
+        <div class="price">₹11000</div>
+      </div>
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/591f24d03fa8d37515464b7d7d839803ae26b018.png" alt="Motorola One"></div>
+        <h4>Motorola One</h4>
+        <div class="meta">4 GB RAM</div>
+        <div class="price">₹11000</div>
+      </div>
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/ca10227e6832ecd813b66323cd59ae1f41403148.png" alt="Redmi Note 7"></div>
+        <h4>Redmi Note 7</h4>
+        <div class="meta">4 GB RAM</div>
+        <div class="price">₹11000</div>
+      </div>
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/55a308d75d83e71dea5f8d19f33010da767014bf.png" alt="OPPO F11 Pro"></div>
+        <h4>OPPO F11 Pro</h4>
+        <div class="meta">6 GB RAM</div>
+        <div class="price">₹11000</div>
+      </div>
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/00e3a2c37a0c6ca5ea3d47b1ec58a75d722f4672.png" alt="Realme C2"></div>
+        <h4>Realme C2</h4>
+        <div class="meta">2 GB RAM</div>
+        <div class="price">₹11000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDING OFFERS -->
+<section class="section" style="background:var(--bg-soft);">
+  <div class="wrap">
+    <h2 class="section-title">Trending Offers</h2>
+    <div class="strip-grid">
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/5d072b7c7781d933cc874a2b464e66fca552c574.png" alt="Sanitizers"></div>
+        <h4>Sanitizers</h4>
+        <div class="off">Extra 5% Off</div>
+        <div class="sub">Hurry!</div>
+      </div>
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/6a8910c0ef60a08f7481d46d3b60bb877c332dde.png" alt="Masks"></div>
+        <h4>Masks</h4>
+        <div class="off">Extra 10% Off</div>
+        <div class="sub">Limited!</div>
+      </div>
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/d4da54680d9678acde10e76e1a818de1f5f3c477.png" alt="Chairs"></div>
+        <h4>Chairs</h4>
+        <div class="off">Top Picks</div>
+        <div class="sub">Explore!</div>
+      </div>
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/e7b596a9def7ed2ee0b4dcf08c601e9f3fd85b34.png" alt="Bedsheets"></div>
+        <h4>Bedsheets</h4>
+        <div class="off">Extra 15% Off</div>
+        <div class="sub">Discover!</div>
+      </div>
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/a0ca4a7af527438fd37e90dd5b623b6429ef7042.png" alt="Handbags"></div>
+        <h4>Handbags</h4>
+        <div class="off">Special Offers</div>
+        <div class="sub">Great Savings!</div>
+      </div>
+      <div class="strip-card">
+        <div class="img-box"><img src="assets/4d008788addd3511e98d9badb39cf65d0a7a45dc.png" alt="Paintings"></div>
+        <h4>Paintings</h4>
+        <div class="off">Extra 5% Off</div>
+        <div class="sub">Grab Now!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER -->
+<div class="banner-deals">
+  <img src="assets/96f99fac6d2fb0cad81cc3a0556ab2d0fb02afb2.png" alt="Banner Deals">
+</div>
+
+<!-- DISCOVER LATEST / BLOG -->
+<section class="section">
+  <div class="wrap">
+    <div class="discover-head">
+      <h2>Discover Latest</h2>
+      <p>Explore and browse new and vintage pieces</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <img src="assets/5871310639d268d4d0f2eb2204025e15a8d187cc.png" alt="Jeanne Moreau">
+        <div class="tag">Electronic</div>
+        <h3>Jeanne Moreau's Best On-Screen Headphones</h3>
+        <p>As it is announced that the French actress Jeanne Moreau has died at the age of 89, Vogue looks back on her best style moments on-screen.</p>
+        <a class="read-more" href="#">Read more &rsaquo;</a>
+      </div>
+      <div class="blog-card">
+        <img src="assets/1ceee9c21a2b316ebf1a53cd201d73f30982e90b.png" alt="Arundhati Roy">
+        <div class="tag">Arts &amp; Lifestyle</div>
+        <h3>Arundhati Roy: Why Happiness Is A Radical Act</h3>
+        <p>Twenty years ago, Arundhati Roy turned her back on fiction for political activism. As her long-awaited second novel.</p>
+        <a class="read-more" href="#">Read more &rsaquo;</a>
+      </div>
+      <div class="blog-card">
+        <img src="assets/1d9d8f76237ed0622bc5fb4a395efe95b83ce301.png" alt="Going Solo">
+        <div class="tag">Travel</div>
+        <h3>Going Solo: A Girl's Guide To Travelling Alone</h3>
+        <p>There's something intrepid about the idea of holidaying alone. You are Jeanne Baret, the first woman circumnavigating the globe.</p>
+        <a class="read-more" href="#">Read more &rsaquo;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>Weekly Newsletter</h2>
+  <p>Sign up to our weekly newsletter to keep up-to-date with our latest items</p>
+  <form class="newsletter-form">
+    <input type="email" placeholder="Enter Email Address">
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Products</h4>
+        <ul>
+          <li>Headphones</li>
+          <li>Earphones</li>
+          <li>Speakers</li>
+          <li>Accessories</li>
+          <li>Collaborations</li>
+          <li>BeatsAudio</li>
+          <li>Furniture</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li>Product Help</li>
+          <li>Service &amp; Warranty</li>
+          <li>Authorized Service Providers</li>
+          <li>Contact Support</li>
+          <li>International Numbers</li>
+        </ul>
+      </div>
+      <div>
+        <h4>WillMart</h4>
+        <ul>
+          <li>Product Help</li>
+          <li>News and Events</li>
+          <li>Promotion Terms</li>
+          <li>Privacy Policy</li>
+          <li>Trademark</li>
+          <li>Terms of Use</li>
+          <li>Cookies</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <div class="socials">
+          <span>&#128247;</span>
+          <span>f</span>
+          <span>t</span>
+          <span>&#9993;</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      Copyright © 2020 WillMart Inc. - All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
